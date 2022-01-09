@@ -125,3 +125,6 @@ nav button {
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-gray-200;
 }
+.font_italic{
+  font-style: italic;
+}

@@ -128,3 +128,10 @@ nav button {
 .font_italic{
   font-style: italic;
 }
+.message span.sender {
+  @apply mr-11;
+  @apply text-xs;
+  @apply text-gray-500;
+  @apply flex;
+  @apply justify-flex-end;
+}

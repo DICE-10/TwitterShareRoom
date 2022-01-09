@@ -6,13 +6,14 @@ import Filter from 'bad-words'
 import { ref, onUnmounted, computed } from 'vue'
 
 firebase.initializeApp({
-  apiKey: 'AIzaSyAJZ2X1xZEiQ8kFJxjH7qPknhA4aF9y9bY',
-  authDomain: 'vue-chat-app-27d21.firebaseapp.com',
-  projectId: 'vue-chat-app-27d21',
-  storageBucket: 'vue-chat-app-27d21.appspot.com',
-  messagingSenderId: '223042471176',
-  appId: '1:223042471176:web:7a12ed657e072e21b618bd',
-  measurementId: 'G-6N52LNM6YL'
+  apiKey: "AIzaSyA1_hSMG8fYBqUnb0voC-we6H86agazAEo",
+  authDomain: "twittershareroom.firebaseapp.com",
+  databaseURL: "https://twittershareroom-default-rtdb.firebaseio.com",
+  projectId: "twittershareroom",
+  storageBucket: "twittershareroom.appspot.com",
+  messagingSenderId: "409618468677",
+  appId: "1:409618468677:web:56c65a38512eb2da0e382c",
+  measurementId: "G-W309RG9E0Y"
 })
 
 const auth = firebase.auth()
@@ -24,8 +25,8 @@ export function useAuth() {
   const isLogin = computed(() => user.value !== null)
 
   const signIn = async () => {
-    const googleProvider = new firebase.auth.GoogleAuthProvider()
-    await auth.signInWithPopup(googleProvider)
+    const twitterProvider = new firebase.auth.TwitterAuthProvider()
+    await auth.signInWithPopup(twitterProvider)
   }
   const signOut = () => auth.signOut()
 

@@ -133,5 +133,5 @@ nav button {
   @apply text-xs;
   @apply text-gray-500;
   @apply flex;
-  @apply justify-flex-end;
+  @apply justify-end;
 }

@@ -28,8 +28,8 @@ nav h1 {
   @apply text-xl;
 }
 
-nav h1 > strong {
-  @apply text-green-300;
+nav h1 > strong.cyan {
+  @apply text-cyan-400;
 }
 
 nav .login {

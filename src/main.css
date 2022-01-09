@@ -28,7 +28,7 @@ nav h1 {
   @apply text-xl;
 }
 
-nav h1 > strong.cyan {
+nav h1 > strong {
   @apply text-cyan-400;
 }
 

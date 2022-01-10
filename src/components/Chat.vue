@@ -7,8 +7,8 @@
         :name="userName"
         :photo-url="userPhotoURL"
         :sender="userId === user?.uid"
-        :text="text"
       >
+        {{ repNewLine(text) }}
       </Message>
     </div>
   </div>
@@ -58,6 +58,10 @@ export default {
     }
 
     return { user, isLogin, messages, bottom, message, send }
+  },
+  repNewLine(val){
+    return val.replace('\n','<br />');
   }
 }
+
 </script>

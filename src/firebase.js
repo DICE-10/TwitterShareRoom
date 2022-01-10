@@ -17,7 +17,7 @@ firebase.initializeApp({
 })
 
 const auth = firebase.auth()
-
+var userData
 export function useAuth() {
   const user = ref(null)
   const unsubscribe = auth.onAuthStateChanged(_user => (user.value = _user))
@@ -28,7 +28,7 @@ export function useAuth() {
     const twitterProvider = new firebase.auth.TwitterAuthProvider()
     await auth.signInWithPopup(twitterProvider)
       .then(( result ) => {
-      const userData = {
+      userData = {
         id: result.user.uid,
         name: result.additionalUserInfo.username,
         email: result.additionalUserInfo.profile.email,

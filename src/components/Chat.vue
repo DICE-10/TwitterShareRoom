@@ -34,11 +34,11 @@ import { useAuth, useChat } from '@/firebase'
 
 import SendIcon from './SendIcon.vue'
 import Message from './Message.vue'
-
 export default {
   components: { Message, SendIcon },
   setup() {
     const { user, isLogin } = useAuth()
+    console.dir(user)
     const { messages, sendMessage } = useChat()
 
     const bottom = ref(null)

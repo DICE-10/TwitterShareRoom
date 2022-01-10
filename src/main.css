@@ -78,6 +78,7 @@ nav button {
   @apply p-2;
   @apply rounded-lg;
   @apply text-white;
+  display: block;
 }
 
 .bottom {

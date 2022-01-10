@@ -68,6 +68,7 @@ export function useChat() {
       userId: uid,
       userPhotoURL: photoURL,
       text: text,
+      userArId: userData.name,
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
     })
   }

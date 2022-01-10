@@ -73,7 +73,7 @@ nav button {
   @apply rounded-lg;
   @apply text-white;
 }
-.text_white{
+.message span.text_white{
   @apply mx-2;
   @apply p-2;
   @apply rounded-lg;

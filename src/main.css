@@ -147,3 +147,6 @@ nav button {
   @apply flex;
   @apply justify-end;
 }
+button svg.cyan-hover:hover {
+  color: rgb(34 211 238);
+}

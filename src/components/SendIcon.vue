@@ -1,6 +1,6 @@
 <template>
   <svg
-    class="icon-send hover:text-green-500 hover:text-green-500"
+    class="icon-send cyan-hover"
     aria-hidden="true"
     focusable="false"
     role="img"

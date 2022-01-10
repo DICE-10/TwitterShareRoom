@@ -38,7 +38,6 @@ export default {
   components: { Message, SendIcon },
   setup() {
     const { user, isLogin } = useAuth()
-    console.dir(user)
     const { messages, sendMessage } = useChat()
 
     const bottom = ref(null)

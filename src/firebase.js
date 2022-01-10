@@ -25,8 +25,16 @@ export function useAuth() {
   const isLogin = computed(() => user.value !== null)
 
   const signIn = async () => {
-    const twitterProvider = new firebase.auth.TwitterAuthProvider()
-    await auth.signInWithPopup(twitterProvider)
+    await firebase.auth.signInWithPopup(new firebase.auth.TwitterAuthProvider())
+    .then((userCredential) => {
+      // Get the Twitter screen name.
+      console.log(userCredential.additionalUserInfo.username);
+    })
+    .catch(() => {
+      // An error occurred.
+    });
+    // const twitterProvider = new firebase.auth.TwitterAuthProvider()
+    // await auth.signInWithPopup(twitterProvider)
   }
   const signOut = () => auth.signOut()
 

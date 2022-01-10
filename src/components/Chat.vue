@@ -7,8 +7,8 @@
         :name="userName"
         :photo-url="userPhotoURL"
         :sender="userId === user?.uid"
+        :text="text"
       >
-        {{ text }}
       </Message>
     </div>
   </div>
@@ -53,7 +53,7 @@ export default {
 
     const message = ref('')
     const send = () => {
-      sendMessage(message.value.replace('\n','<br/>'))
+      sendMessage(message.value)
       message.value = ''
     }
 

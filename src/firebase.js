@@ -62,12 +62,12 @@ export function useChat() {
   const sendMessage = text => {
     if (!isLogin.value) return
     const { photoURL, uid, displayName } = user.value
+    console.dir(user)
     messagesCollection.add({
       userName: displayName,
       userId: uid,
       userPhotoURL: photoURL,
       text: text,
-      userData: userData,
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
     })
   }

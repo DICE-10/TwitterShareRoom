@@ -30,7 +30,7 @@ export function useAuth() {
       .then(( result ) => {
       const userData = {
         id: result.user.uid,
-        name: result.additionalUserInfo.profile.given_name,
+        name: result.additionalUserInfo.username,
         email: result.additionalUserInfo.profile.email,
         sex: ''
       }

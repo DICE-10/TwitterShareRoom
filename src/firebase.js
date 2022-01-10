@@ -17,9 +17,9 @@ firebase.initializeApp({
 })
 
 const auth = firebase.auth()
-var userData
 export function useAuth() {
   const user = ref(null)
+  const userData = ref(null)
   const unsubscribe = auth.onAuthStateChanged(_user => (user.value = _user))
   onUnmounted(unsubscribe)
   const isLogin = computed(() => user.value !== null)
@@ -28,7 +28,7 @@ export function useAuth() {
     const twitterProvider = new firebase.auth.TwitterAuthProvider()
     await auth.signInWithPopup(twitterProvider)
       .then(( result ) => {
-      userData = {
+      userData.value = {
         id: result.user.uid,
         name: result.additionalUserInfo.username,
         email: result.additionalUserInfo.profile.email,
@@ -41,7 +41,7 @@ export function useAuth() {
   }
   const signOut = () => auth.signOut()
 
-  return { user, isLogin, signIn, signOut }
+  return { user, isLogin,userData, signIn, signOut }
 }
 
 const firestore = firebase.firestore()
@@ -58,7 +58,7 @@ export function useChat() {
   })
   onUnmounted(unsubscribe)
 
-  const { user, isLogin } = useAuth()
+  const { user, isLogin,userData } = useAuth()
   const sendMessage = text => {
     if (!isLogin.value) return
     const { photoURL, uid, displayName } = user.value

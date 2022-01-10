@@ -62,7 +62,7 @@ export function useChat() {
   const sendMessage = text => {
     if (!isLogin.value) return
     const { photoURL, uid, displayName } = user.value
-    console.dir(user)
+    console.dir(user.value)
     messagesCollection.add({
       userName: displayName,
       userId: uid,

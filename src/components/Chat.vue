@@ -53,7 +53,7 @@ export default {
 
     const message = ref('')
     const send = () => {
-      sendMessage(message.value)
+      sendMessage(message.value.replace('\n','<br/>'))
       message.value = ''
     }
 

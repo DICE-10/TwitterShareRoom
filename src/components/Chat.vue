@@ -18,7 +18,7 @@
   <div class="bottom">
     <div class="container-sm">
       <form v-if="isLogin" @submit.prevent="send">
-        <input v-model="message" placeholder="Message" required />
+        <textarea v-model="message" placeholder="Message" required />
         <button type="submit">
           <SendIcon />
         </button>

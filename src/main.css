@@ -100,6 +100,18 @@ nav button {
   @apply text-white;
 }
 
+.bottom form textarea {
+  @apply flex-grow;
+  @apply m-2;
+  @apply py-2;
+  @apply px-4;
+  @apply mr-1;
+  @apply rounded;
+  @apply border-none;
+  @apply bg-gray-700;
+  @apply text-white;
+}
+
 .icon-send {
   @apply text-gray-500;
   @apply w-12;

@@ -59,8 +59,10 @@ export default {
 
     return { user, isLogin, messages, bottom, message, send }
   },
-  repNewLine(val){
-    return val.replace('\n','<br />');
+  methods: {
+    repNewLine(val) {
+      return val.replace('\n','<br />');
+    }
   }
 }
 

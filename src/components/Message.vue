@@ -5,7 +5,7 @@
     <div class="flex" :class="sender ? 'flex-row-reverse' : ''">
       <Avatar class="mt-1" :src="photoUrl" />
       <div class="text w-3/4" :class="sender ? 'bg-green-800' : 'bg-gray-700'">
-        <slot>{{ text }}</slot>
+        {{ text }}
       </div>
     </div>
   </div>

@@ -8,7 +8,7 @@
         :photo-url="userPhotoURL"
         :sender="userId === user?.uid"
       >
-        <span v-html="text.replace(/\n/g,'<br/>')"></span>
+        <span class="text_white" v-html="text.replace(/\n/g,'<br/>')"></span>
       </Message>
     </div>
   </div>

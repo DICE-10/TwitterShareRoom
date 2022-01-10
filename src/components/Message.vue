@@ -1,7 +1,7 @@
 <template>
   <div class="message">
-    <a v-if="!sender" :href="'https://twitter.com/'+userData.name"><span>{{ name }}</span></a>
-    <a v-else :href="'https://twitter.com/'+userData.name"><span  class="font_italic sender">{{ name }}</span></a>
+    <a v-if="!sender" :href="'https://twitter.com/'+userData"><span>{{ name }}</span></a>
+    <a v-else :href="'https://twitter.com/'+userData"><span  class="font_italic sender">{{ name }}</span></a>
     <div class="flex" :class="sender ? 'flex-row-reverse' : ''">
       <Avatar class="mt-1" :src="photoUrl" />
       <div class="text w-3/4" :class="sender ? 'bg-green-800' : 'bg-gray-700'">
@@ -19,7 +19,8 @@ export default {
     name: { type: String, default: '' },
     photoUrl: { type: String, default: '' },
     sender: { type: Boolean, default: false },
-    user: { type: String, default: ''}
+    user: { type: String, default: ''},
+    userData: { type: String, default: '' }
   }
 }
 </script>

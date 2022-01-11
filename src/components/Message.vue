@@ -20,6 +20,7 @@ export default {
     photoUrl: { type: String, default: '' },
     sender: { type: Boolean, default: false },
     user: { type: String, default: ''},
+    userData: { type: Object, default: null }
   }
 }
 </script>

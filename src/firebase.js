@@ -34,7 +34,7 @@ export function useAuth() {
         email: result.additionalUserInfo.profile.email,
         sex: ''
       }
-      console.log(typeof userData.value)
+      console.dir(userData.value)
     }).catch(error => {
       this.errorMessage = error.message
     })

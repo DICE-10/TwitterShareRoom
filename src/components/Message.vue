@@ -19,7 +19,7 @@ export default {
     name: { type: String, default: '' },
     photoUrl: { type: String, default: '' },
     sender: { type: Boolean, default: false },
-    user: { type: String, default: ''}
+    user: { type: String, default: ''},
   }
 }
 </script>

@@ -34,7 +34,7 @@ export function useAuth() {
         email: result.additionalUserInfo.profile.email,
         sex: ''
       }
-      console.log(userData)
+      console.log(typeof userData.value)
     }).catch(error => {
       this.errorMessage = error.message
     })
@@ -58,7 +58,7 @@ export function useChat() {
   })
   onUnmounted(unsubscribe)
 
-  const { user, isLogin,userData } = useAuth()
+  const { user, isLogin, userData } = useAuth()
   const sendMessage = text => {
     if (!isLogin.value) return
     const { photoURL, uid, displayName } = user.value
@@ -68,7 +68,7 @@ export function useChat() {
       userId: uid,
       userPhotoURL: photoURL,
       text: text,
-      userArId: userData,
+      userAtId: userData.value,
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
     })
   }

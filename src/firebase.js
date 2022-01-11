@@ -20,7 +20,7 @@ const auth = firebase.auth()
 export function useAuth() {
   const user = ref(null)
   const userData = ref(null)
-  const unsubscribe = auth.onAuthStateChanged(_user => (user.value = _user))
+  const unsubscribe = auth.onAuthStateChanged(_user => (user.value = _user), _userData => (userData.value = _userData))
   onUnmounted(unsubscribe)
   const isLogin = computed(() => user.value !== null)
 
@@ -41,7 +41,7 @@ export function useAuth() {
   }
   const signOut = () => auth.signOut()
 
-  return { user, isLogin,userData, signIn, signOut }
+  return { user, isLogin, userData, signIn, signOut }
 }
 
 const firestore = firebase.firestore()

@@ -37,10 +37,11 @@ import Message from './Message.vue'
 export default {
   components: { Message, SendIcon },
   setup() {
-    const { user, isLogin } = useAuth()
+    const { user , isLogin } = useAuth()
     const { messages, sendMessage } = useChat()
 
     const bottom = ref(null)
+    console.dir(user)
     watch(
       messages,
       () => {

@@ -17,6 +17,7 @@ firebase.initializeApp({
 })
 
 const auth = firebase.auth()
+const firestore = firebase.firestore()
 export function useAuth() {
   const user = ref(null)
   const userData = ref(null)
@@ -29,13 +30,16 @@ export function useAuth() {
     await auth
       .signInWithPopup(twitterProvider)
       .then(result => {
-        userData.value = {
-          id: result.user.uid,
-          name: result.additionalUserInfo.username,
-          email: result.additionalUserInfo.profile.email,
-          sex: ''
-        }
-        console.dir(userData)
+        firebase
+          .collection('users')
+          .doc()
+          .set({
+            uid: result.user.uid,
+            displayName: result.additionalUserInfo.displayName,
+            userID: result.additionalUserInfo.username,
+            email: result.additionalUserInfo.profile.email,
+            photoURL: result.additionalUserInfo.photoURL
+          })
       })
       .catch(error => {
         this.errorMessage = error.message
@@ -46,7 +50,7 @@ export function useAuth() {
   return { user, isLogin, userData, signIn, signOut }
 }
 
-const firestore = firebase.firestore()
+
 const messagesCollection = firestore.collection('messages')
 const messagesQuery = messagesCollection.orderBy('createdAt', 'desc').limit(100)
 //const filter = new Filter()

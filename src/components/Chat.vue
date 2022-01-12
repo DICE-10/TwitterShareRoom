@@ -7,7 +7,7 @@
         :name="userName"
         :photo-url="userPhotoURL"
         :sender="userId === user?.uid"
-        :user="userAtId"
+        :user="twitterId.value"
       >
         <span class="text_white" v-html="text.replace(/\n/g,'<br/>')"></span>
       </Message>
@@ -34,12 +34,13 @@ import { useAuth, useChat } from '@/firebase'
 
 import SendIcon from './SendIcon.vue'
 import Message from './Message.vue'
+import firebase from 'firebase/app'
 export default {
   components: { Message, SendIcon },
   setup() {
     const { user , isLogin } = useAuth()
     const { messages, sendMessage } = useChat()
-
+    const { twitterId } = ref()
     const bottom = ref(null)
     console.dir(user)
     watch(
@@ -49,7 +50,17 @@ export default {
           bottom.value?.scrollIntoView({ behavior: 'smooth' })
         })
       },
-      { deep: true }
+      { deep: true },
+      firebase
+        .auth()
+        .getRedirectResult()
+        .then(userCredential => {
+          twitterId.value = userCredential.additionalUserInfo.username //Twitter ID を取得
+          //ついでに最新の表示名とアイコンも取得
+          // this.displayName = userCredential.additionalUserInfo.profile.name
+          // this.photoURL =
+          //   userCredential.additionalUserInfo.profile.profile_image_url
+        })
     )
 
     const message = ref('')
@@ -58,7 +69,7 @@ export default {
       message.value = ''
     }
 
-    return { user, isLogin, messages, bottom, message, send }
+    return { user, isLogin, messages, bottom, message, send, twitterId }
   },
   methods: {
     repNewLine(val) {

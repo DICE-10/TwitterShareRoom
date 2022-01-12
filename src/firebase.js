@@ -27,17 +27,17 @@ export function useAuth() {
   const signIn = async () => {
     const twitterProvider = new firebase.auth.TwitterAuthProvider()
     await auth.signInWithPopup(twitterProvider)
-      .then(( result ) => {
-      userData.value = {
-        id: result.user.uid,
-        name: result.additionalUserInfo.username,
-        email: result.additionalUserInfo.profile.email,
-        sex: ''
-      }
-      console.dir(userData.value)
-    }).catch(error => {
-      this.errorMessage = error.message
-    })
+      .then((result) => {
+        userData.value = {
+          id: result.user.uid,
+          name: result.additionalUserInfo.username,
+          email: result.additionalUserInfo.profile.email,
+          sex: ''
+        }
+        console.dir(userData.value)
+      }).catch(error => {
+        this.errorMessage = error.message
+      })
   }
   const signOut = () => auth.signOut()
 

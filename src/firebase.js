@@ -33,7 +33,7 @@ export function useAuth() {
         firebase
           .collection('users')
           .doc()
-          .set({
+          .add({
             uid: result.user.uid,
             displayName: result.user.displayName,
             userID: result.additionalUserInfo.username,

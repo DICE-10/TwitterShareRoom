@@ -32,7 +32,6 @@ export function useAuth() {
       .then(result => {
         firestore
           .collection('users')
-          .doc()
           .add({
             uid: result.user.uid,
             displayName: result.user.displayName,

@@ -30,7 +30,7 @@ export function useAuth() {
     await auth
       .signInWithPopup(twitterProvider)
       .then(result => {
-        firebase
+        firestore
           .collection('users')
           .doc()
           .add({

@@ -9,7 +9,7 @@
         :sender="userId === user?.uid"
         :user="twitterId"
       >
-        <span class="text_white" v-html="text.replace(/\n/g,'<br/>')"></span>
+        <span class="text_white" v-html="text.replace(/\n/g, '<br/>')"></span>
       </Message>
     </div>
   </div>
@@ -34,13 +34,11 @@ import { useAuth, useChat } from '@/firebase'
 
 import SendIcon from './SendIcon.vue'
 import Message from './Message.vue'
-import firebase from 'firebase/app'
 export default {
   components: { Message, SendIcon },
   setup() {
-    const { user , isLogin } = useAuth()
+    const { user, isLogin } = useAuth()
     const { messages, sendMessage } = useChat()
-    const { twitterId } = ref()
     const bottom = ref(null)
     console.dir(user)
     watch(
@@ -50,18 +48,7 @@ export default {
           bottom.value?.scrollIntoView({ behavior: 'smooth' })
         })
       },
-      { deep: true },
-      firebase
-        .auth()
-        .getRedirectResult()
-        .then(userCredential => {
-          console.dir(userCredential.additionalUserInfo)
-          twitterId.value = userCredential.additionalUserInfo.username //Twitter ID を取得
-          //ついでに最新の表示名とアイコンも取得
-          // this.displayName = userCredential.additionalUserInfo.profile.name
-          // this.photoURL =
-          //   userCredential.additionalUserInfo.profile.profile_image_url
-        })
+      { deep: true }
     )
 
     const message = ref('')
@@ -70,13 +57,12 @@ export default {
       message.value = ''
     }
 
-    return { user, isLogin, messages, bottom, message, send, twitterId }
+    return { user, isLogin, messages, bottom, message, send }
   },
   methods: {
     repNewLine(val) {
-      return val.replace('\n','<br />');
+      return val.replace('\n', '<br />')
     }
   }
 }
-
 </script>

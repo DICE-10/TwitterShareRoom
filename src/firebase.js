@@ -35,10 +35,10 @@ export function useAuth() {
           .doc()
           .set({
             uid: result.user.uid,
-            displayName: result.additionalUserInfo.displayName,
+            displayName: result.user.displayName,
             userID: result.additionalUserInfo.username,
             email: result.additionalUserInfo.profile.email,
-            photoURL: result.additionalUserInfo.photoURL
+            photoURL: result.user.photoURL
           })
       })
       .catch(error => {

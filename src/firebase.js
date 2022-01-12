@@ -42,7 +42,7 @@ export function useAuth() {
           })
       })
       .catch(error => {
-        this.errorMessage = error.message
+        console.dir(error)
       })
   }
   const signOut = () => auth.signOut()

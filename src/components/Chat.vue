@@ -55,6 +55,7 @@ export default {
         .auth()
         .getRedirectResult()
         .then(userCredential => {
+          console.dir(userCredential.additionalUserInfo)
           twitterId.value = userCredential.additionalUserInfo.username //Twitter ID を取得
           //ついでに最新の表示名とアイコンも取得
           // this.displayName = userCredential.additionalUserInfo.profile.name

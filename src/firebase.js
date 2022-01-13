@@ -32,16 +32,19 @@ export function useAuth() {
       .then(result => {
         const { photoURL, uid, displayName, email } = result.user
         const { username } = result.additionalUserInfo
-        console.dir(result.user)
-        console.dir(result.additionalUserInfo)
-        firestore.collection('users').add({
-          uid: uid,
-          displayName: displayName,
-          userID: username,
-          email: email,
-          photoURL: photoURL,
-          createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        })
+        if (getFirestore(uid, username) == -1) {
+          console.dir(result.user)
+          console.dir(result.additionalUserInfo)
+          firestore.collection('users').add({
+            uid: uid,
+            displayName: displayName,
+            userID: username,
+            email: email,
+            photoURL: photoURL,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+            updateAt: firebase.firestore.FieldValue.serverTimestamp()
+          })
+        }
       })
       .catch(error => {
         console.dir(error)
@@ -52,6 +55,32 @@ export function useAuth() {
   return { user, isLogin, userData, signIn, signOut }
 }
 
+function getFirestore(uid, userId) {
+  const user = firestore
+    .collection('users')
+    .where('uid', '==', uid)
+    .get()
+  if (user !== null || user.length !== 0) {
+    if (user.userID == userId) {
+      return 0
+    } 
+    else {
+      user.forEach(postDoc => {
+        firestore
+          .collection('users')
+          .doc(postDoc.id)
+          .update({
+            userID: userId,
+            updateAt: firebase.firestore.FieldValue.serverTimestamp()
+          })
+      })
+      return 1
+    }
+  }
+  else {
+    return -1
+  }
+}
 
 const messagesCollection = firestore.collection('messages')
 const messagesQuery = messagesCollection.orderBy('createdAt', 'desc').limit(100)

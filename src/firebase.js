@@ -30,15 +30,17 @@ export function useAuth() {
     await auth
       .signInWithPopup(twitterProvider)
       .then(result => {
-        firestore
-          .collection('users')
-          .add({
-            uid: result.user.uid,
-            displayName: result.user.displayName,
-            userID: result.additionalUserInfo.username,
-            email: result.additionalUserInfo.profile.email,
-            photoURL: result.user.photoURL
-          })
+        const { photoURL, uid, displayName } = result.user
+        const { username, profile } = result.additionalUserInfo
+        console.dir(result.user)
+        console.dir(result.additionalUserInfo)
+        firestore.collection('users').add({
+          uid: uid,
+          displayName: displayName,
+          userID: username,
+          email: profile.email,
+          photoURL: photoURL
+        })
       })
       .catch(error => {
         console.dir(error)

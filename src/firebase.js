@@ -66,6 +66,7 @@ function getFirestore(uid, userId) {
       return 0
     } 
     else {
+      console.log(user.docs.map(postDoc => postDoc.id))
       user.forEach(postDoc => {
         firestore
           .collection('users')

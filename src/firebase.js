@@ -60,6 +60,7 @@ function getFirestore(uid, userId) {
     .collection('users')
     .where('uid', '==', uid)
     .get()
+  console.log("users")
   if (user !== null || user.length !== 0) {
     if (user.userID == userId) {
       return 0
